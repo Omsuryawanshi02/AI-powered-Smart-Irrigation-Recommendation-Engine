@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AquaSmart - Alerts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "secondary-container": "#fed0c1",
+                            "on-primary-fixed-variant": "#274e3d",
+                            "on-secondary-fixed": "#2d150d",
+                            "on-error": "#ffffff",
+                            "on-secondary-container": "#79574c",
+                            "primary-fixed-dim": "#a5d0b9",
+                            "surface-variant": "#e3e2df",
+                            "tertiary": "#002845",
+                            "surface-container-highest": "#e3e2df",
+                            "error": "#ba1a1a",
+                            "surface-container-low": "#f4f4f0",
+                            "primary": "#012d1d",
+                            "tertiary-fixed": "#cfe5ff",
+                            "surface-dim": "#dbdad6",
+                            "primary-fixed": "#c1ecd4",
+                            "surface": "#faf9f5",
+                            "surface-container-high": "#e9e8e4",
+                            "secondary": "#79564b",
+                            "error-container": "#ffdad6",
+                            "on-primary": "#ffffff",
+                            "tertiary-fixed-dim": "#99cbff",
+                            "on-error-container": "#93000a",
+                            "surface-container-lowest": "#ffffff",
+                            "on-surface-variant": "#414844",
+                            "surface-bright": "#faf9f5",
+                            "on-surface": "#1b1c1a",
+                            "surface-container": "#efeeea",
+                            "on-tertiary-container": "#4cadfd",
+                            "on-tertiary": "#ffffff",
+                            "on-background": "#1b1c1a",
+                            "secondary-fixed-dim": "#e9bdae",
+                            "inverse-primary": "#a5d0b9",
+                            "on-primary-container": "#86af99",
+                            "surface-tint": "#3f6653",
+                            "on-tertiary-fixed-variant": "#004a78",
+                            "outline": "#717973",
+                            "outline-variant": "#c1c8c2",
+                            "on-secondary-fixed-variant": "#5e3f35",
+                            "on-tertiary-fixed": "#001d34",
+                            "tertiary-container": "#003f67",
+                            "primary-container": "#1b4332",
+                            "inverse-on-surface": "#f2f1ed",
+                            "secondary-fixed": "#ffdbcf",
+                            "inverse-surface": "#2f312e",
+                            "on-primary-fixed": "#002114",
+                            "background": "#faf9f5",
+                            "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "1rem",
+                            "lg": "2rem",
+                            "xl": "3rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "card-gap": "24px",
+                            "unit": "8px",
+                            "section-margin": "48px",
+                            "gutter": "16px",
+                            "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                            "headline-lg": ["Inter"],
+                            "label-sm": ["Inter"],
+                            "display-lg": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "label-md": ["Inter"],
+                            "title-md": ["Inter"],
+                            "body-md": ["Inter"],
+                            "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                            "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                            "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #FDFCF8; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface h-full flex flex-col pt-16 pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim flex justify-between items-center px-container-padding py-4 max-w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed icon-fill" data-icon="water_drop">water_drop</span>
+<span class="text-title-md font-title-md font-bold text-primary dark:text-primary-fixed">AquaSmart</span>
+</div>
+<button class="w-10 h-10 rounded-full overflow-hidden hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:opacity-80 active:scale-95 flex items-center justify-center">
+<img alt="User profile settings" class="w-full h-full object-cover" data-alt="A close-up portrait of an agricultural professional, specifically a farmer in their late 30s. They are wearing a well-worn canvas jacket and a simple cap. The lighting is warm and golden, suggesting late afternoon sun. The background is slightly out of focus, showing a blurred field with soft green and earthy tones. The overall mood is grounded, experienced, and approachable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_fP5Sl7iSdPdiZeZ6YmeUGd1uUMRvxtKudVaHzptYpZ4KX-qBeb46P08MvXT5puoeZq4hpwMgcGODk8yBLbEKSeYhWpvz23bxhLJXl2QXsNr2DiNNXPcY7wrs1e1zlFAvZuY0PAbvXMcwxprewvIRtPE83JUqp82ZZsj15IXTzuvE6ix2tYRUlVQCwHigZqTkUTWVWu6avUTBug9xUS0OGS69DeqLSvNJ1QylRAwV_vmjRQIQCS1tQA"/>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-grow px-gutter md:px-container-padding max-w-3xl mx-auto w-full pt-8 pb-32 md:pb-8 flex flex-col gap-unit">
+<div class="flex justify-between items-end mb-4">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary">Alerts</h1>
+<button class="font-label-md text-label-md text-primary flex items-center gap-1 hover:text-on-primary-fixed-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">done_all</span> Mark all read
+            </button>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm">All Alerts</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors border border-outline-variant">Irrigation</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors border border-outline-variant">Weather</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors border border-outline-variant">System</button>
+</div>
+<!-- Alert Feed -->
+<div class="flex flex-col gap-4">
+<!-- Alert Card 1: Irrigation -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-4 shadow-[0_4px_30px_rgba(1,45,29,0.04)] border border-surface-container-high relative overflow-hidden group hover:border-primary-fixed-dim hover:shadow-[0_8px_40px_rgba(1,45,29,0.08)] transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary"></div>
+<div class="flex items-start gap-4 ml-2">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary-container icon-fill">water</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface">Irrigation recommended for North Plot</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">10m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">Soil moisture dropped below 20%. Recommend applying 15mm to maintain optimal growth conditions.</p>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors">Start Irrigation</button>
+<div class="flex items-center gap-1 bg-tertiary-fixed/50 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-tertiary icon-fill">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-tertiary">AI Estimated</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Alert Card 2: Weather Skipped -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-4 shadow-[0_4px_30px_rgba(1,45,29,0.04)] border border-surface-container-high relative overflow-hidden group hover:border-primary-fixed-dim hover:shadow-[0_8px_40px_rgba(1,45,29,0.08)] transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<div class="flex items-start gap-4 ml-2">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary icon-fill">rainy</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface">Rain expected — Schedule skipped</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2h ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">Heavy rainfall (25mm) forecasted for tomorrow morning. Scheduled irrigation for East Valley has been paused to conserve water.</p>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 border border-outline text-primary rounded-full font-label-md text-label-md hover:bg-surface-container-high transition-colors">Review Schedule</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Alert Card 3: Manual Task -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-4 shadow-[0_4px_30px_rgba(1,45,29,0.04)] border border-surface-container-high relative overflow-hidden group hover:border-primary-fixed-dim hover:shadow-[0_8px_40px_rgba(1,45,29,0.08)] transition-all opacity-80">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-outline-variant"></div>
+<div class="flex items-start gap-4 ml-2">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant icon-fill">grass</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-title-md text-title-md text-on-surface">Update soil feel test</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Yesterday</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">It's been 14 days since the last manual soil texture assessment in the South Grove.</p>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-surface-variant text-on-surface rounded-full font-label-md text-label-md hover:bg-surface-dim transition-colors">Log Data</button>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant icon-fill">pan_tool</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Manual Entry</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container dark:bg-surface-container-lowest rounded-t-xl shadow-[0_-4px_30px_rgba(1,45,29,0.04)] flex justify-around items-center px-gutter pb-4 pt-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:bg-secondary-container/50 dark:hover:bg-secondary-fixed-dim/20 transition-all rounded-full group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 duration-200 ease-out" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:bg-secondary-container/50 dark:hover:bg-secondary-fixed-dim/20 transition-all rounded-full group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 duration-200 ease-out" data-icon="Layers">cc_attribution</span>
+<span class="font-label-sm text-label-sm">Fields</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:bg-secondary-container/50 dark:hover:bg-secondary-fixed-dim/20 transition-all rounded-full group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 duration-200 ease-out" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-sm text-label-sm">Schedule</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:bg-secondary-container/50 dark:hover:bg-secondary-fixed-dim/20 transition-all rounded-full group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 duration-200 ease-out" data-icon="monitoring">monitoring</span>
+<span class="font-label-sm text-label-sm">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1 icon-fill" data-icon="notifications">notifications</span>
+<span class="font-label-sm text-label-sm">Alerts</span>
+</a>
+</nav>
+</body></html>
