@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSmart - API Configuration & Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .status-ok { @apply bg-green-100 text-green-800 border border-green-300; }
+        .status-error { @apply bg-red-100 text-red-800 border border-red-300; }
+        .status-pending { @apply bg-yellow-100 text-yellow-800 border border-yellow-300; }
+        .code-block { @apply bg-gray-100 border border-gray-300 rounded p-4 font-mono text-sm overflow-x-auto; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-4xl mx-auto py-8 px-4">
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">AquaSmart API Configuration & Test</h1>
+            <p class="text-gray-600">Configure and test your connection to the AquaSmart backend</p>
+        </div>
+
+        <!-- Configuration Section -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Configuration</h2>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">API Base URL</label>
+                <div class="flex gap-2">
+                    <input 
+                        type="text" 
+                        id="apiUrl" 
+                        class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        value="http://localhost:8000"
+                        placeholder="http://localhost:8000"
+                    >
+                    <button 
+                        onclick="saveConfig()"
+                        class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium"
+                    >
+                        Save
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500 mt-2">
+                    Default: http://localhost:8000<br>
+                    This value is saved in browser localStorage
+                </p>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                <p class="text-sm text-gray-700">
+                    <strong>Current API URL:</strong> <span id="currentUrl" class="font-mono text-blue-600">http://localhost:8000</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Health Check Section -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Backend Health Check</h2>
+            
+            <button 
+                onclick="checkHealth()"
+                class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium mb-4"
+            >
+                Check Health
+            </button>
+
+            <div id="healthStatus" class="hidden p-4 rounded border">
+                <div id="healthContent"></div>
+            </div>
+        </div>
+
+        <!-- Test Endpoints Section -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Test Endpoints</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <button 
+                    onclick="testEndpoint('users')"
+                    class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium"
+                >
+                    List Users
+                </button>
+                <button 
+                    onclick="testEndpoint('fields')"
+                    class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium"
+                >
+                    List Fields
+                </button>
+                <button 
+                    onclick="testEndpoint('sensors')"
+                    class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium"
+                >
+                    Get Sensor Readings
+                </button>
+                <button 
+                    onclick="testEndpoint('weather')"
+                    class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium"
+                >
+                    Get Weather Forecast
+                </button>
+            </div>
+
+            <div id="testResults" class="hidden p-4 rounded border">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 id="testTitle" class="font-bold text-gray-900"></h3>
+                    <button 
+                        onclick="document.getElementById('testResults').classList.add('hidden')"
+                        class="text-gray-500 hover:text-gray-700"
+                    >
+                        ✕
+                    </button>
+                </div>
+                <div id="testContent"></div>
+            </div>
+        </div>
+
+        <!-- Local Storage Info -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Stored Settings</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm text-gray-600 font-medium">API Base URL</p>
+                    <p class="text-sm font-mono text-gray-900 mt-1" id="storageApiUrl">http://localhost:8000</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm text-gray-600 font-medium">User ID</p>
+                    <p class="text-sm font-mono text-gray-900 mt-1" id="storageUserId">1</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm text-gray-600 font-medium">Field ID</p>
+                    <p class="text-sm font-mono text-gray-900 mt-1" id="storageFieldId">1</p>
+                </div>
+                <div>
+                    <button 
+                        onclick="clearStorage()"
+                        class="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 font-medium"
+                    >
+                        Clear All Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Quick Links</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <a href="../frontend/home_dashboard.html" class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-medium text-center">
+                    Home Dashboard
+                </a>
+                <a href="../frontend/add_field.html" class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 font-medium text-center">
+                    Add Field
+                </a>
+                <a href="http://localhost:8000/docs" target="_blank" class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 font-medium text-center">
+                    API Docs (Swagger)
+                </a>
+                <a href="http://localhost:8000/redoc" target="_blank" class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 font-medium text-center">
+                    API Docs (ReDoc)
+                </a>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="bg-blue-50 rounded-lg border border-blue-200 p-6">
+            <h3 class="text-lg font-bold text-blue-900 mb-2">Getting Started</h3>
+            <ol class="text-blue-800 space-y-2 text-sm">
+                <li>1. Make sure the backend server is running on http://localhost:8000</li>
+                <li>2. Click "Check Health" to verify the backend is responding</li>
+                <li>3. Use the test buttons to verify API endpoints are working</li>
+                <li>4. Configure the API URL if your backend is on a different server</li>
+                <li>5. Navigate to the dashboard or add fields to start using AquaSmart</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script>
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateStorageDisplay();
+            const apiUrl = localStorage.getItem('apiBaseUrl') || 'http://localhost:8000';
+            document.getElementById('apiUrl').value = apiUrl;
+            document.getElementById('currentUrl').textContent = apiUrl;
+        });
+
+        function saveConfig() {
+            const apiUrl = document.getElementById('apiUrl').value;
+            if (!apiUrl) {
+                alert('Please enter a valid API URL');
+                return;
+            }
+            localStorage.setItem('apiBaseUrl', apiUrl);
+            api.setApiBaseUrl(apiUrl);
+            document.getElementById('currentUrl').textContent = apiUrl;
+            updateStorageDisplay();
+            alert('Configuration saved successfully!');
+        }
+
+        async function checkHealth() {
+            try {
+                const result = await api.checkHealth();
+                showStatus('Health Check', result, true);
+            } catch (error) {
+                showStatus('Health Check', error, false);
+            }
+        }
+
+        async function testEndpoint(type) {
+            try {
+                let result;
+                switch(type) {
+                    case 'users':
+                        result = await api.listFields();  // Using fields as a generic endpoint
+                        break;
+                    case 'fields':
+                        result = await api.listFields();
+                        break;
+                    case 'sensors':
+                        result = await api.getSensorReadings(1, 5);
+                        break;
+                    case 'weather':
+                        result = await api.getWeatherForecast(28.7041, 77.1025);
+                        break;
+                }
+                showTestResults(type, result, true);
+            } catch (error) {
+                showTestResults(type, error, false);
+            }
+        }
+
+        function showStatus(title, data, success) {
+            const statusDiv = document.getElementById('healthStatus');
+            const contentDiv = document.getElementById('healthContent');
+            
+            statusDiv.classList.remove('hidden');
+            statusDiv.className = `p-4 rounded border ${success ? 'status-ok' : 'status-error'}`;
+            
+            if (success) {
+                contentDiv.innerHTML = `
+                    <h3 class="font-bold mb-2">✓ Backend is healthy</h3>
+                    <pre class="text-sm">${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } else {
+                contentDiv.innerHTML = `
+                    <h3 class="font-bold mb-2">✗ Error connecting to backend</h3>
+                    <p class="text-sm mb-2">${data.message || data}</p>
+                    <p class="text-xs">Make sure the backend is running on: <span class="font-mono">${localStorage.getItem('apiBaseUrl') || 'http://localhost:8000'}</span></p>
+                `;
+            }
+        }
+
+        function showTestResults(endpoint, data, success) {
+            const resultsDiv = document.getElementById('testResults');
+            const titleDiv = document.getElementById('testTitle');
+            const contentDiv = document.getElementById('testContent');
+            
+            resultsDiv.classList.remove('hidden');
+            titleDiv.textContent = `Test: ${endpoint.toUpperCase()}`;
+            resultsDiv.className = `p-4 rounded border ${success ? 'status-ok' : 'status-error'}`;
+            
+            if (success) {
+                contentDiv.innerHTML = `
+                    <pre class="text-sm bg-gray-100 p-3 rounded overflow-x-auto">${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } else {
+                contentDiv.innerHTML = `
+                    <p class="text-sm mb-2">Error: ${data.message || data}</p>
+                `;
+            }
+        }
+
+        function updateStorageDisplay() {
+            document.getElementById('storageApiUrl').textContent = localStorage.getItem('apiBaseUrl') || 'http://localhost:8000';
+            document.getElementById('storageUserId').textContent = localStorage.getItem('userId') || '1';
+            document.getElementById('storageFieldId').textContent = localStorage.getItem('fieldId') || '1';
+        }
+
+        function clearStorage() {
+            if (confirm('Are you sure you want to clear all stored settings?')) {
+                localStorage.clear();
+                updateStorageDisplay();
+                alert('Settings cleared!');
+            }
+        }
+    </script>
+</body>
+</html>

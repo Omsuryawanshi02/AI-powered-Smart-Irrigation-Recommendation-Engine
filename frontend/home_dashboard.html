@@ -109,6 +109,100 @@
   </style>
   </head>
 <body class="bg-surface text-on-surface min-h-screen">
+<script src="api.js"></script>
+<script>
+  // Configuration
+  const CURRENT_USER_ID = localStorage.getItem('userId') || 1;
+  const CURRENT_FIELD_ID = localStorage.getItem('fieldId') || 1;
+
+  // Set API base URL if needed (default is http://localhost:8000)
+  const apiUrl = localStorage.getItem('apiBaseUrl') || 'http://localhost:8000';
+  if (apiUrl !== 'http://localhost:8000') {
+    api.setApiBaseUrl(apiUrl);
+  }
+
+  // Initialize dashboard on page load
+  document.addEventListener('DOMContentLoaded', async () => {
+    await loadDashboardData();
+  });
+
+  async function loadDashboardData() {
+    try {
+      // Check backend health
+      const health = await api.checkHealth();
+      console.log('Backend health:', health);
+
+      // Load field data
+      const field = await api.getField(CURRENT_FIELD_ID);
+      console.log('Field data:', field);
+
+      // Load latest sensor reading
+      const readings = await api.getSensorReadings(CURRENT_FIELD_ID, 1);
+      console.log('Latest sensor reading:', readings);
+
+      // Load weather forecast
+      if (field && field.latitude && field.longitude) {
+        const weather = await api.getWeatherForecast(field.latitude, field.longitude);
+        console.log('Weather forecast:', weather);
+        updateWeatherUI(weather);
+      }
+
+      // Load recommendation
+      const recommendation = await api.getRecommendation(CURRENT_FIELD_ID);
+      console.log('Recommendation:', recommendation);
+      updateRecommendationUI(recommendation);
+
+      // Load alerts
+      const alerts = await api.getAlerts(CURRENT_USER_ID);
+      console.log('Alerts:', alerts);
+
+    } catch (error) {
+      console.error('Error loading dashboard data:', error);
+      showError('Failed to load dashboard data. Make sure the backend is running.');
+    }
+  }
+
+  function updateWeatherUI(weather) {
+    // Update weather section with actual data
+    if (weather && weather.current) {
+      const current = weather.current;
+      const tempElement = document.querySelector('[data-weather-temp]') || document.querySelectorAll('.font-headline-lg-mobile')[0];
+      const humidElement = document.querySelector('[data-weather-humid]') || document.querySelectorAll('.font-title-md')[0];
+      
+      if (tempElement) {
+        tempElement.textContent = Math.round(current.temperature) + '°C';
+      }
+    }
+  }
+
+  function updateRecommendationUI(recommendation) {
+    // Update recommendation card with actual data
+    if (recommendation && recommendation.recommendation) {
+      const rec = recommendation.recommendation;
+      const titleElement = document.querySelector('h3') || document.querySelectorAll('.font-headline-lg-mobile')[0];
+      const depthElement = document.querySelector('span.font-title-md') || document.querySelectorAll('.font-title-md')[1];
+      
+      if (titleElement && rec.reason) {
+        titleElement.textContent = rec.reason || 'Irrigate Tomorrow Morning';
+      }
+      
+      if (depthElement && rec.irrigation_depth_mm) {
+        depthElement.textContent = Math.round(rec.irrigation_depth_mm) + 'mm recommended';
+      }
+    }
+  }
+
+  function showError(message) {
+    console.error(message);
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'bg-error-container text-on-error-container p-4 rounded-lg m-4';
+      errorDiv.textContent = message + ' Backend URL: ' + localStorage.getItem('apiBaseUrl') || 'http://localhost:8000';
+      mainElement.insertBefore(errorDiv, mainElement.firstChild);
+    }
+  }
+</script>
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 bg-surface flex justify-between items-center px-container-padding py-4 max-w-full flat no shadows">
 <div class="flex items-center gap-2">

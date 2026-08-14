@@ -121,6 +121,68 @@
   </style>
   </head>
 <body class="h-full w-full font-body-md text-on-surface flex flex-col md:flex-row antialiased">
+<script src="api.js"></script>
+<script>
+  const CURRENT_USER_ID = localStorage.getItem('userId') || 1;
+
+  async function submitFieldForm(event) {
+    event.preventDefault();
+    
+    try {
+      const formData = {
+        user_id: CURRENT_USER_ID,
+        name: document.getElementById('fieldName').value,
+        crop_type: document.getElementById('cropType').value,
+        field_size: parseFloat(document.getElementById('fieldSize').value),
+        size_unit: document.getElementById('sizeUnit').value,
+        sowing_date: new Date(document.getElementById('sowingDate').value).toISOString().split('T')[0],
+        soil_type: document.getElementById('soilType').value,
+        region: document.getElementById('region').value,
+        season: document.getElementById('season').value,
+        irrigation_type: document.querySelector('input[name="irrigation"]:checked')?.value,
+        water_source: document.getElementById('waterSource').value,
+        mulching_used: document.getElementById('mulching').checked,
+        latitude: parseFloat(document.querySelector('[data-latitude]')?.textContent || '0'),
+        longitude: parseFloat(document.querySelector('[data-longitude]')?.textContent || '0'),
+      };
+
+      // Validate required fields
+      if (!formData.name || !formData.crop_type || !formData.field_size) {
+        showMessage('Please fill in all required fields', 'error');
+        return;
+      }
+
+      const response = await api.createField(formData);
+      
+      // Store the new field ID
+      localStorage.setItem('fieldId', response.id);
+      
+      showMessage('Field created successfully!', 'success');
+      
+      // Redirect after short delay
+      setTimeout(() => {
+        window.location.href = 'home_dashboard.html';
+      }, 1500);
+
+    } catch (error) {
+      console.error('Error creating field:', error);
+      showMessage('Failed to create field. Make sure the backend is running.', 'error');
+    }
+  }
+
+  function showMessage(message, type = 'info') {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `fixed top-4 left-4 right-4 z-50 p-4 rounded-lg font-body-md ${
+      type === 'error' ? 'bg-error-container text-on-error-container' :
+      type === 'success' ? 'bg-primary-container text-on-primary-container' :
+      'bg-surface-container text-on-surface'
+    }`;
+    messageDiv.textContent = message;
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => messageDiv.remove(), 3000);
+  }
+</script>
 <!-- TopAppBar (Web & Mobile context) -->
 <header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim flex justify-between items-center px-container-padding py-4 max-w-full">
 <!-- Leading Action: Back (since it's a sub-page/transactional) -->
@@ -150,7 +212,7 @@
 <span class="font-label-sm text-label-sm text-secondary">Manual Entry</span>
 </div>
 </div>
-<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+<form class="flex flex-col gap-6" id="fieldForm" onsubmit="submitFieldForm(event)">
 <!-- Field Name -->
 <div class="flex flex-col gap-2">
 <label class="font-label-md text-label-md text-on-surface-variant" for="fieldName">Field Name</label>
@@ -270,7 +332,7 @@
 </main>
 <!-- Sticky Bottom Action Area -->
 <div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-surface-variant p-4 z-40 md:bg-transparent md:border-none md:backdrop-blur-none md:static md:p-0 md:mt-8 md:max-w-3xl md:mx-auto pb-8 md:pb-0 shadow-[0_-4px_30px_rgba(1,45,29,0.04)] md:shadow-none">
-<button class="w-full bg-primary text-on-primary rounded-full py-4 font-title-md text-title-md flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-[0.98] transition-all shadow-lg shadow-primary/20">
+<button type="submit" form="fieldForm" class="w-full bg-primary text-on-primary rounded-full py-4 font-title-md text-title-md flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-[0.98] transition-all shadow-lg shadow-primary/20">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
             Save Field
         </button>
