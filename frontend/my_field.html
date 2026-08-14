@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AquaSmart - My Fields</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1a1c18",
+                        "inverse-surface": "#2f312c",
+                        "on-surface": "#1a1c18",
+                        "background": "#f9faf2",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e8e9e1",
+                        "surface-container": "#edefe7",
+                        "primary-container": "#1b4332",
+                        "tertiary-fixed": "#cee9d3",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "on-primary-fixed": "#002114",
+                        "on-secondary-container": "#316e52",
+                        "surface-dim": "#d9dbd3",
+                        "secondary-fixed": "#b1f0ce",
+                        "on-tertiary-fixed-variant": "#354c3b",
+                        "outline-variant": "#c1c8c2",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b3cdb7",
+                        "surface-variant": "#e2e3db",
+                        "surface-bright": "#f9faf2",
+                        "on-secondary-fixed-variant": "#0e5138",
+                        "tertiary-container": "#2a4131",
+                        "primary": "#012d1d",
+                        "secondary-fixed-dim": "#95d4b3",
+                        "primary-fixed": "#c1ecd4",
+                        "surface-tint": "#3f6653",
+                        "tertiary": "#152b1c",
+                        "secondary-container": "#aeeecb",
+                        "inverse-on-surface": "#f0f1e9",
+                        "surface": "#f9faf2",
+                        "on-tertiary-fixed": "#092012",
+                        "surface-container-highest": "#e2e3db",
+                        "on-tertiary-container": "#93ad98",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#86af99",
+                        "inverse-primary": "#a5d0b9",
+                        "on-primary": "#ffffff",
+                        "secondary": "#2c694e",
+                        "on-error": "#ffffff",
+                        "outline": "#717973",
+                        "on-surface-variant": "#414844",
+                        "on-secondary-fixed": "#002114",
+                        "surface-container-low": "#f3f4ec",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-desktop": "32px",
+                        "card-gap": "20px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "container-padding-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Manrope"],
+                        "display-kpi": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "display-kpi": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background h-full font-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 bg-surface shadow-sm z-40 hidden md:flex">
+<div class="flex justify-between items-center px-container-padding-desktop h-16 w-full">
+<div class="flex items-center gap-4 cursor-pointer active:scale-95 transition-transform hover:bg-surface-container-high px-3 py-2 rounded-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">AquaSmart</span>
+</div>
+<nav class="flex gap-8">
+<a class="font-headline-md text-headline-md text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-2 rounded-lg" href="#">Dashboard</a>
+<a class="font-headline-md text-headline-md text-primary bg-secondary-container rounded-lg px-4 py-2" href="#">Fields</a>
+<a class="font-headline-md text-headline-md text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-2 rounded-lg" href="#">AI</a>
+<a class="font-headline-md text-headline-md text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-2 rounded-lg" href="#">Weather</a>
+<a class="font-headline-md text-headline-md text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-2 rounded-lg" href="#">Settings</a>
+</nav>
+<div class="cursor-pointer active:scale-95 transition-transform hover:bg-surface-container-high p-2 rounded-full">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</div>
+</div>
+</header>
+<header class="w-full top-0 bg-surface shadow-sm z-40 md:hidden sticky">
+<div class="flex justify-between items-center px-container-mobile h-16 w-full">
+<div class="flex items-center gap-2 cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">AquaSmart</span>
+</div>
+<div class="cursor-pointer active:scale-95 transition-transform hover:bg-surface-container-high p-2 rounded-full">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-8 mb-24 md:mb-0">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background">My Fields</h1>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-primary-container transition-colors shadow-sm w-full md:w-auto justify-center">
+<span class="material-symbols-outlined">add</span>
+                ADD NEW FIELD
+            </button>
+</div>
+<div class="flex flex-col md:flex-row gap-4 mb-8">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-[#F1F2E9] border-none rounded-lg pl-12 pr-4 py-3 text-body-md focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-colors placeholder:text-outline-variant text-on-surface" placeholder="Search fields, crops..." type="text"/>
+</div>
+<button class="flex items-center justify-center gap-2 px-6 py-3 bg-surface border-[1.5px] border-secondary text-secondary rounded-lg font-label-caps text-label-caps hover:bg-surface-container-low transition-colors w-full md:w-auto">
+<span class="material-symbols-outlined">filter_list</span>
+                FILTER
+            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+<!-- North Field Card -->
+<div class="bg-surface-container-lowest rounded-xl p-gutter shadow-[0px_4px_20px_rgba(27,67,50,0.06)] hover:shadow-[0px_12px_32px_rgba(27,67,50,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col group border border-transparent hover:border-secondary-container">
+<div class="w-full h-40 bg-surface-container-high rounded-lg mb-6 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A lush green wheat field viewed from above on a sunny day. Minimalist, modern agricultural aesthetic, high contrast, vibrant greens. Corporate modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvKqJsZBmAWyHRsACe_FjWiBShd0ACRmzMKV5V0fo4KyrnKYi3ZTczQAP39xmS9OMlzFopb9OcuCnpe5cZ4q2kmw4oOpqZ4wdB7Wty5DPoEMG6-B07zjWp-iKEdsG2ESgfvOy12ThcYDKOauAAIvpdDIZuueZfrOaLwyp-nflrCGfMyOW7rTrX6K-u32v2qdsbtmeV3ip8W-4li2Dicvao3FoVBOJCehYEml2xjtQTpvjgp6bXpC4pGg"/>
+<div class="absolute top-4 right-4 bg-tertiary-fixed/90 backdrop-blur-sm text-on-tertiary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm border border-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]">water_drop</span>
+                         42% Moisture
+                    </div>
+</div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">North Field</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">grass</span> Wheat • 2.5ha
+                        </p>
+</div>
+<span class="px-3 py-1 bg-[#ba1a1a]/15 text-[#ba1a1a] rounded-full font-label-caps text-label-caps border border-[#ba1a1a]/30">DRY</span>
+</div>
+<div class="mt-auto pt-6">
+<button class="w-full bg-transparent border-[1.5px] border-secondary text-secondary font-label-caps text-label-caps py-3 rounded-lg hover:bg-secondary hover:text-on-secondary transition-colors flex items-center justify-center gap-2">
+                         VIEW FIELD <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- South Field Card -->
+<div class="bg-surface-container-lowest rounded-xl p-gutter shadow-[0px_4px_20px_rgba(27,67,50,0.06)] hover:shadow-[0px_12px_32px_rgba(27,67,50,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col group border border-transparent hover:border-secondary-container">
+<div class="w-full h-40 bg-surface-container-high rounded-lg mb-6 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A detailed aerial view of a healthy corn field. Geometric rows stretching to the horizon. Bright, professional lighting, deep forest greens and vibrant golden hues. High quality corporate modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOVXW9GeknURJ68XHiRRq585-6e0y2ZoqbTqWw4uDl1xehlPcBUJMTZ8gbo03J02QMXwPcjpU7Hz7nzQreYsU3VWrbodTV0hYn2IbcR5QySibIQpx67goVW8LeJ9bBi-_rp8z74-8pBucI7Zkks65_ESnafSt6hanBzSkdmM5JSIJd7Ku7j84KDIF-oLz6wCozPYmGNkdcxOge7h9TKAY-y8ihJNiClYjSLz8Tokyk03p9lt1CV8f9Ew"/>
+<div class="absolute top-4 right-4 bg-secondary-fixed/90 backdrop-blur-sm text-on-secondary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm border border-secondary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]">water_drop</span>
+                         55% Moisture
+                    </div>
+</div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">South Field</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">agriculture</span> Corn • 1.8ha
+                        </p>
+</div>
+<span class="px-3 py-1 bg-[#2c694e]/15 text-[#2c694e] rounded-full font-label-caps text-label-caps border border-[#2c694e]/30">OPTIMAL</span>
+</div>
+<div class="mt-auto pt-6">
+<button class="w-full bg-transparent border-[1.5px] border-secondary text-secondary font-label-caps text-label-caps py-3 rounded-lg hover:bg-secondary hover:text-on-secondary transition-colors flex items-center justify-center gap-2">
+                         VIEW FIELD <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface shadow-[0px_-4px_20px_rgba(27,67,50,0.06)] px-2 md:hidden rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">agriculture</span>
+<span class="font-label-sm text-label-sm font-semibold">Fields</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1">psychology</span>
+<span class="font-label-sm text-label-sm">AI</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1">cloudy_snowing</span>
+<span class="font-label-sm text-label-sm">Weather</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200 w-16" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+</body></html>
