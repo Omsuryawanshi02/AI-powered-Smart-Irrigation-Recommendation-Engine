@@ -135,7 +135,7 @@
 <main class="flex-1 w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-8 mb-24 md:mb-0">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
 <h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background">My Fields</h1>
-<button class="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-primary-container transition-colors shadow-sm w-full md:w-auto justify-center">
+<button id="addFieldButton" class="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-primary-container transition-colors shadow-sm w-full md:w-auto justify-center">
 <span class="material-symbols-outlined">add</span>
                 ADD NEW FIELD
             </button>
@@ -150,57 +150,90 @@
                 FILTER
             </button>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
-<!-- North Field Card -->
-<div class="bg-surface-container-lowest rounded-xl p-gutter shadow-[0px_4px_20px_rgba(27,67,50,0.06)] hover:shadow-[0px_12px_32px_rgba(27,67,50,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col group border border-transparent hover:border-secondary-container">
-<div class="w-full h-40 bg-surface-container-high rounded-lg mb-6 overflow-hidden relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A lush green wheat field viewed from above on a sunny day. Minimalist, modern agricultural aesthetic, high contrast, vibrant greens. Corporate modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvKqJsZBmAWyHRsACe_FjWiBShd0ACRmzMKV5V0fo4KyrnKYi3ZTczQAP39xmS9OMlzFopb9OcuCnpe5cZ4q2kmw4oOpqZ4wdB7Wty5DPoEMG6-B07zjWp-iKEdsG2ESgfvOy12ThcYDKOauAAIvpdDIZuueZfrOaLwyp-nflrCGfMyOW7rTrX6K-u32v2qdsbtmeV3ip8W-4li2Dicvao3FoVBOJCehYEml2xjtQTpvjgp6bXpC4pGg"/>
-<div class="absolute top-4 right-4 bg-tertiary-fixed/90 backdrop-blur-sm text-on-tertiary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm border border-tertiary-fixed-dim">
-<span class="material-symbols-outlined text-[16px]">water_drop</span>
-                         42% Moisture
-                    </div>
-</div>
-<div class="flex justify-between items-start mb-4">
-<div>
-<h2 class="font-headline-md text-headline-md text-on-surface mb-1">North Field</h2>
-<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">grass</span> Wheat • 2.5ha
-                        </p>
-</div>
-<span class="px-3 py-1 bg-[#ba1a1a]/15 text-[#ba1a1a] rounded-full font-label-caps text-label-caps border border-[#ba1a1a]/30">DRY</span>
-</div>
-<div class="mt-auto pt-6">
-<button class="w-full bg-transparent border-[1.5px] border-secondary text-secondary font-label-caps text-label-caps py-3 rounded-lg hover:bg-secondary hover:text-on-secondary transition-colors flex items-center justify-center gap-2">
-                         VIEW FIELD <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- South Field Card -->
-<div class="bg-surface-container-lowest rounded-xl p-gutter shadow-[0px_4px_20px_rgba(27,67,50,0.06)] hover:shadow-[0px_12px_32px_rgba(27,67,50,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col group border border-transparent hover:border-secondary-container">
-<div class="w-full h-40 bg-surface-container-high rounded-lg mb-6 overflow-hidden relative">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A detailed aerial view of a healthy corn field. Geometric rows stretching to the horizon. Bright, professional lighting, deep forest greens and vibrant golden hues. High quality corporate modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOVXW9GeknURJ68XHiRRq585-6e0y2ZoqbTqWw4uDl1xehlPcBUJMTZ8gbo03J02QMXwPcjpU7Hz7nzQreYsU3VWrbodTV0hYn2IbcR5QySibIQpx67goVW8LeJ9bBi-_rp8z74-8pBucI7Zkks65_ESnafSt6hanBzSkdmM5JSIJd7Ku7j84KDIF-oLz6wCozPYmGNkdcxOge7h9TKAY-y8ihJNiClYjSLz8Tokyk03p9lt1CV8f9Ew"/>
-<div class="absolute top-4 right-4 bg-secondary-fixed/90 backdrop-blur-sm text-on-secondary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm border border-secondary-fixed-dim">
-<span class="material-symbols-outlined text-[16px]">water_drop</span>
-                         55% Moisture
-                    </div>
-</div>
-<div class="flex justify-between items-start mb-4">
-<div>
-<h2 class="font-headline-md text-headline-md text-on-surface mb-1">South Field</h2>
-<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">agriculture</span> Corn • 1.8ha
-                        </p>
-</div>
-<span class="px-3 py-1 bg-[#2c694e]/15 text-[#2c694e] rounded-full font-label-caps text-label-caps border border-[#2c694e]/30">OPTIMAL</span>
-</div>
-<div class="mt-auto pt-6">
-<button class="w-full bg-transparent border-[1.5px] border-secondary text-secondary font-label-caps text-label-caps py-3 rounded-lg hover:bg-secondary hover:text-on-secondary transition-colors flex items-center justify-center gap-2">
-                         VIEW FIELD <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
+<div id="fieldList" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter"></div>
 </main>
+
+<div id="fieldModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#012d1d]/40 p-4">
+  <div class="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold text-primary">Add New Field</h2>
+      <button id="closeFieldModal" class="material-symbols-outlined text-2xl text-on-surface-variant" type="button">close</button>
+    </div>
+
+    <form id="fieldForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="md:col-span-2">
+        <label class="block text-sm font-medium text-on-surface-variant mb-1" for="fieldName">Field name</label>
+        <input id="fieldName" class="w-full rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2" required type="text" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-on-surface-variant mb-1" for="fieldCrop">Crop type</label>
+        <select id="fieldCrop" class="w-full rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2">
+          <option>Wheat</option>
+          <option>Rice</option>
+          <option>Maize</option>
+          <option>Cotton</option>
+          <option>Sugarcane</option>
+          <option>Potato</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-on-surface-variant mb-1" for="fieldSize">Field size</label>
+        <input id="fieldSize" class="w-full rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2" required min="0.1" step="0.1" type="number" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-on-surface-variant mb-1" for="sizeUnit">Unit</label>
+        <select id="sizeUnit" class="w-full rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2">
+          <option value="acre">Acre</option>
+          <option value="hectare">Hectare</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-on-surface-variant mb-1" for="soilType">Soil type</label>
+        <select id="soilType" class="w-full rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2">
+          <option>Loamy</option>
+          <option>Clay</option>
+          <option>Sandy</option>
+          <option>Silt</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-on-surface-variant mb-1" for="region">Region</label>
+        <select id="region" class="w-full rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2">
+          <option>North</option>
+          <option>South</option>
+          <option>East</option>
+          <option>West</option>
+          <option>Central</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-on-surface-variant mb-1" for="sowingDate">Sowing date</label>
+        <input id="sowingDate" class="w-full rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2" type="date" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-on-surface-variant mb-1" for="irrigationType">Irrigation type</label>
+        <select id="irrigationType" class="w-full rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2">
+          <option>Drip</option>
+          <option>Sprinkler</option>
+          <option>Canal</option>
+          <option>Rainfed</option>
+        </select>
+      </div>
+
+      <div class="md:col-span-2 flex gap-3 justify-end pt-2">
+        <button id="cancelFieldButton" class="rounded-lg border border-outline-variant px-4 py-2 text-on-surface-variant" type="button">Cancel</button>
+        <button id="saveFieldButton" class="rounded-lg bg-primary px-5 py-2 text-on-primary" type="submit">Save Field</button>
+      </div>
+    </form>
+  </div>
+</div>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface shadow-[0px_-4px_20px_rgba(27,67,50,0.06)] px-2 md:hidden rounded-t-xl">
 <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200 w-16" href="#">
@@ -224,4 +257,145 @@
 <span class="font-label-sm text-label-sm">Settings</span>
 </a>
 </nav>
+<script>
+  const API_BASE = window.location.origin || 'http://127.0.0.1:8001';
+  const fieldList = document.getElementById('fieldList');
+  const addFieldButton = document.getElementById('addFieldButton');
+  const fieldModal = document.getElementById('fieldModal');
+  const fieldForm = document.getElementById('fieldForm');
+  const closeFieldModal = document.getElementById('closeFieldModal');
+  const cancelFieldButton = document.getElementById('cancelFieldButton');
+
+  function getUserId() {
+    const saved = Number(localStorage.getItem('aqua_user_id'));
+    if (!saved) {
+      window.location.href = '/frontend/login.html';
+      return 0;
+    }
+    return saved;
+  }
+
+  function openFieldModal() {
+    fieldModal.classList.remove('hidden');
+    fieldModal.classList.add('flex');
+  }
+
+  function closeFieldModalDialog() {
+    fieldModal.classList.add('hidden');
+    fieldModal.classList.remove('flex');
+    fieldForm.reset();
+  }
+
+  function getStatusBadge(moisture) {
+    if (moisture < 35) return { label: 'DRY', className: 'bg-[#ba1a1a]/15 text-[#ba1a1a]' };
+    if (moisture < 55) return { label: 'WATCH', className: 'bg-[#d97706]/15 text-[#d97706]' };
+    return { label: 'OPTIMAL', className: 'bg-[#2c694e]/15 text-[#2c694e]' };
+  }
+
+  function renderFields(fields) {
+    if (!fields.length) {
+      fieldList.innerHTML = '<div class="col-span-full rounded-xl border border-dashed border-outline-variant bg-surface-container-lowest p-8 text-center text-on-surface-variant">No fields yet. Add your first field to start tracking irrigation.</div>';
+      return;
+    }
+
+    fieldList.innerHTML = fields.map((field) => {
+      const badge = getStatusBadge(field.sensor_readings?.[0]?.soil_moisture ?? 52);
+      const cropName = field.crop_type || 'Crop';
+      const area = Number(field.field_area_hectare || 0).toFixed(1);
+      return `
+        <div class="bg-surface-container-lowest rounded-xl p-gutter shadow-[0px_4px_20px_rgba(27,67,50,0.06)] hover:shadow-[0px_12px_32px_rgba(27,67,50,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col group border border-transparent hover:border-secondary-container">
+          <div class="w-full h-40 bg-surface-container-high rounded-lg mb-6 overflow-hidden relative">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=80" alt="${field.name} field" />
+            <div class="absolute top-4 right-4 bg-secondary-fixed/90 backdrop-blur-sm text-on-secondary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm border border-secondary-fixed-dim">
+              <span class="material-symbols-outlined text-[16px]">water_drop</span>
+              ${field.sensor_readings?.[0]?.soil_moisture ?? 52}% Moisture
+            </div>
+          </div>
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <h2 class="font-headline-md text-headline-md text-on-surface mb-1">${field.name}</h2>
+              <p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">grass</span> ${cropName} • ${area}ha
+              </p>
+            </div>
+            <span class="px-3 py-1 rounded-full font-label-caps text-label-caps border ${badge.className}">${badge.label}</span>
+          </div>
+          <div class="mt-auto pt-6">
+            <button class="w-full bg-transparent border-[1.5px] border-secondary text-secondary font-label-caps text-label-caps py-3 rounded-lg hover:bg-secondary hover:text-on-secondary transition-colors flex items-center justify-center gap-2" onclick="window.location.href='/frontend/dashboard.html'">
+              VIEW FIELD <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  async function loadFields() {
+    const userId = getUserId();
+    if (!userId) return;
+
+    try {
+      const response = await fetch(`${API_BASE}/api/fields?user_id=${userId}`);
+      if (!response.ok) {
+        throw new Error('Unable to load fields.');
+      }
+      const fields = await response.json();
+      renderFields(fields);
+    } catch (error) {
+      fieldList.innerHTML = '<div class="col-span-full rounded-xl border border-dashed border-outline-variant bg-surface-container-lowest p-8 text-center text-on-surface-variant">Unable to load fields from the irrigation service. Please try again.</div>';
+    }
+  }
+
+  addFieldButton.addEventListener('click', openFieldModal);
+  closeFieldModal.addEventListener('click', closeFieldModalDialog);
+  cancelFieldButton.addEventListener('click', closeFieldModalDialog);
+  fieldModal.addEventListener('click', (event) => {
+    if (event.target === fieldModal) {
+      closeFieldModalDialog();
+    }
+  });
+
+  fieldForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const userId = getUserId();
+    if (!userId) return;
+
+    const payload = {
+      user_id: userId,
+      name: document.getElementById('fieldName').value.trim(),
+      crop_type: document.getElementById('fieldCrop').value,
+      field_size: Number(document.getElementById('fieldSize').value),
+      size_unit: document.getElementById('sizeUnit').value,
+      soil_type: document.getElementById('soilType').value,
+      region: document.getElementById('region').value,
+      sowing_date: document.getElementById('sowingDate').value || null,
+      irrigation_type: document.getElementById('irrigationType').value,
+    };
+
+    if (!payload.name || !payload.field_size) {
+      alert('Please enter a field name and size.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_BASE}/api/fields`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.detail || 'Unable to save field.');
+      }
+
+      closeFieldModalDialog();
+      await loadFields();
+    } catch (error) {
+      alert(error.message || 'Unable to save field.');
+    }
+  });
+
+  loadFields();
+</script>
 </body></html>
